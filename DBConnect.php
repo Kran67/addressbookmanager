@@ -1,4 +1,7 @@
 <?php
+/**
+ * Class permettant de faire la connexion à la base de données
+ */
 class DBConnect
 {
     private static $instance = null; // utiliser pour n'avoir qu'une seule référence à l'intance de la classe => singleton

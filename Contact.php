@@ -65,8 +65,9 @@ class Contact
 
     /**
      * Fonction qui formatte les propriétés en une chaine de caractères
+     * @return string
      */
-    public function toString() {
+    public function __toString(): string {
         return "{$this->id}, {$this->name}, {$this->email}, {$this->telephone}\n";
     }    
 }

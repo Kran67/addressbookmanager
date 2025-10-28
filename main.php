@@ -1,18 +1,34 @@
 <?php
 require_once 'Command.php';
 
-$commandClass = new Command();
+$command = new Command();
+
+$command->clear();
 
 while (true) {
     $line = strtolower(readline("Entrez votre commande : "));
     
-    switch ($line) {
-        case "list":
-            $commandClass->list();
-            break;
-        case "stop":
-         exit();
-        default:
-         echo "Commande non valide : $line\n";
+    if (preg_match("/^detail (.*)$/", $line, $matches)) {
+        $command->detail($matches[1]);
+    } else if (preg_match("/^create (.*), (.*), (.*)$/", $line, $matches)) {
+        $command->create($matches[1], $matches[2], $matches[3]);
+    } else if (preg_match("/^delete (.*)$/", $line, $matches)) {
+        $command->delete($matches[1]);
+    } else {
+        switch ($line) {
+            case "list":
+                $command->list();
+                break;
+            case "stop":
+                exit();
+            case "help":
+                $command->help();
+                break;
+            case "clear":
+                $command->clear();
+                break;
+            default:
+                echo "Commande non valide : $line\n";
+        }
     }
 }
