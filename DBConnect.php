@@ -6,10 +6,11 @@ class DBConnect
 
     /**
      * Constructeur de la classe DBConnect
+     * Privée car elle ne doit pas être instanciée autrement que pas la fonction getInstance pour n'avoir qu'une seule intance de cette classe
      */
     private function __construct()
     {
-        $this->pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
+        $this->pdo = new PDO('mysql:host=localhost;dbname=addressbookmanager;charset=utf8', 'root', 'root');
     }
 
     /**
