@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe représentant le model contact
+ * Classe représentant le modéle contact
  */
 class Contact 
 {

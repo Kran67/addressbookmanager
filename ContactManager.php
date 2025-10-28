@@ -1,8 +1,9 @@
 <?php
+require_once 'DBConnect.php';
 require_once 'Contact.php';
 
 /**
- * Class 
+ * Classe qui fait la liaison entre la base de données et le modéle Contact
  */
 class ContactManager
 {
