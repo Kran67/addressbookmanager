@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe représentant le modéle contact
+ * Classe représentant le modèle contact
  */
 class Contact 
 {
@@ -12,7 +12,7 @@ class Contact
     private string $telephone;
 
     /**
-     * Contructeur de la classe Contact qui prend des paramètres pour initiliser les propriétés de la nouvelle instance
+     * Constructeur de la classe Contact qui prend des paramètres pour initialiser les propriétés de la nouvelle instance
      */
     public function __construct(int $id, string $name, string $email, string $telephone)
     {
@@ -64,10 +64,10 @@ class Contact
     }    
 
     /**
-     * Fonction qui formatte les propriétés en une chaine de caractères
+     * Fonction qui formate les propriétés en une chaine de caractères
      * @return string
      */
     public function __toString(): string {
-        return "{$this->id}, {$this->name}, {$this->email}, {$this->telephone}\n";
+        return $this->id.", ".$this->name.", ".$this->email.", ".$this->telephone."\n";
     }    
 }

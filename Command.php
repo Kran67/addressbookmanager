@@ -6,10 +6,11 @@ require_once 'ContactManager.php';
  */
 class Command
 {
-    private $manager;
+    private ContactManager $manager;
 
     /**
-     * Le constructeur de la classe, initialise le manager de Contact
+     * Le constructeur de la classe
+     * Initialise le manager de Contact
      */
     public function __construct()
     {
@@ -30,7 +31,7 @@ class Command
 
         echo "Liste des contacts : \nid, nom, email, telephone\n";
         foreach ($contacts as $contact) {
-            echo $contact->toString();
+            echo $contact;
         }     
         echo "\n";       
     }
@@ -40,7 +41,7 @@ class Command
      * @param int $id L'identifiant du contact à afficher
      * @return void
      */
-    public function detail($id): void {
+    public function detail(int $id): void {
         $contact = $this->manager->findById($id);
         if (!$contact) {
             echo "Contact non trouvé\n";
@@ -57,11 +58,11 @@ class Command
      * @param string $telephone Le téléphone du contact
      * @return void
      */
-    public function create($name, $email, $telephone): void
+    public function create(string $name, string $email, string $telephone): void
     {
         $contact = $this->manager->create($name, $email, $telephone);
-        echo "Contact créé : {$contact->toString()}";
-        $this->manager->list();
+        echo "Contact créé : ".$contact;
+        $this->list();
     }
 
     /**
@@ -69,11 +70,11 @@ class Command
      * @param int $id L'identifiant du contact à supprimer
      * @return void
      */
-    public function delete($id): void
+    public function delete(int $id): void
     {
         $this->manager->delete($id);
-        echo "Contact n° {$id} supprimé\n";
-        $this->manager->list();
+        echo "Contact n° ".$id." supprimé\n";
+        $this->list();
     }
 
     /**

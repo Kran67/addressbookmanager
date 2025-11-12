@@ -4,12 +4,12 @@
  */
 class DBConnect
 {
-    private static $instance = null; // utiliser pour n'avoir qu'une seule référence à l'intance de la classe => singleton
-    private $pdo;
+    private static ?DBConnect $instance = null; // utiliser pour n'avoir qu'une seule référence à l'instance de la classe → singleton
+    private PDO $pdo;
 
     /**
      * Constructeur de la classe DBConnect
-     * Privée car elle ne doit pas être instanciée autrement que pas la fonction getInstance pour n'avoir qu'une seule intance de cette classe
+     * Privée, car elle ne doit pas être instanciée autrement que pas la fonction getInstance pour n'avoir qu'une seule instance de cette classe
      */
     private function __construct()
     {
@@ -24,7 +24,7 @@ class DBConnect
     {
         // création d'une nouvelle instance s'il n'y en a pas encore
         if (self::$instance == null) self::$instance = new DBConnect();
-        // on retour l'instance
+        // on retourne l'instance
         return self::$instance;
     }
 
