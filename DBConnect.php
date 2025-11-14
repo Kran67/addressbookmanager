@@ -13,7 +13,7 @@ class DBConnect
      */
     private function __construct()
     {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=addressbookmanager;charset=utf8', 'root', 'root');
+        $this->pdo = new PDO('mysql:host=localhost;dbname=addressbookmanager;charset=utf8', '', '');
     }
 
     /**
