@@ -19,7 +19,7 @@ while (true) {
             case "list":
                 $command->list();
                 break;
-            case "stop":
+            case "quit":
                 exit();
             case "help":
                 $command->help();

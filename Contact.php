@@ -9,18 +9,12 @@ class Contact
     private int $id;
     private string $name;
     private string $email;
-    private string $telephone;
+    private string $phone_number;
 
     /**
      * Constructeur de la classe Contact qui prend des paramètres pour initialiser les propriétés de la nouvelle instance
      */
-    public function __construct(int $id, string $name, string $email, string $telephone)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->email = $email;
-        $this->telephone = $telephone;
-    }
+    public function __construct() { }
 
     // Getters / setters
     public function getId(): int
@@ -53,14 +47,14 @@ class Contact
         $this->email = $email;
     }
 
-    public function getTelephone(): string
+    public function getPhoneNumber(): string
     {
-        return $this->telephone;
+        return $this->phone_number;
     }
 
-    public function setTelephone(string $telephone): void
+    public function setPhoneNumber(string $phone_number): void
     {
-        $this->telephone = $telephone;
+        $this->phone_number = $phone_number;
     }    
 
     /**
@@ -68,6 +62,6 @@ class Contact
      * @return string
      */
     public function __toString(): string {
-        return $this->id.", ".$this->name.", ".$this->email.", ".$this->telephone."\n";
+        return $this->id.", ".$this->name.", ".$this->email.", ".$this->phone_number."\n";
     }    
 }

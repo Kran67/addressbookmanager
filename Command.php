@@ -88,7 +88,7 @@ class Command
         echo "create [nom], [email], [téléphone] : crée un contact\n";
         echo "delete [id] : supprime un contact\n";
         echo "clear : efface le contenu de la fenêtre\n";
-        echo "stop : arrête le programme\n";
+        echo "quit : arrête le programme\n";
         echo "\n";
         echo "Attention à la syntaxe des commandes, les espaces, virgules et majuscules sont importantes.\n";
     }

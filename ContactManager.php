@@ -26,11 +26,10 @@ class ContactManager
     public function findAll(): array
     {
         $contacts = [];
-        $queryResults = $this->db->query("SELECT id, name, email, phone_number FROM contact");
-        // On boucle sur les résultats pour créer un tableau d'instance de Contact
-        foreach($queryResults as $result) {
-            $contacts[] = new Contact($result['id'], $result['name'], $result['email'], $result['phone_number']);
-        }
+        $query = $this->db->prepare("SELECT id, name, email, phone_number FROM contact");
+
+        $query->execute();
+        $contacts = $query->fetchAll(PDO::FETCH_CLASS, "Contact");
         
         return $contacts;
     }
@@ -44,11 +43,12 @@ class ContactManager
     {
         $query = $this->db->prepare("SELECT * FROM contact WHERE id = :id");
         $query->execute(["id" => $id]);
+        $query->setFetchMode(PDO::FETCH_CLASS, "Contact");
         $result = $query->fetch();
         if (!$result) {
             return null;
         }
-        return new Contact($result['id'], $result['name'], $result['email'], $result['phone_number']);
+        return $result;
     }
 
     /**
@@ -61,7 +61,7 @@ class ContactManager
     public function create(string $name, string $email, string $phone_number): Contact
     {
         $query = $this->db->prepare("INSERT INTO contact (name, email, phone_number) VALUES (:name, :email, :phone_number)");
-        $query->execute(["name" => $name, "email" => $email, "phone_number" => $phone_number]);
+        $query->execute(["name" => filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS), "email" => filter_var($email, FILTER_VALIDATE_EMAIL), "phone_number" => filter_var($phone_number, FILTER_SANITIZE_FULL_SPECIAL_CHARS)]);
         // Récupération du dernier identifiant inséré. 
         $id = $this->db->lastInsertId();
         // On retourne le contact que l'on vient juste de créer
